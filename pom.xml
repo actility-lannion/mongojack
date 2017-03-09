@@ -426,13 +426,6 @@
         <developerConnection>scm:git:git@github.com:mongojack/mongojack.git</developerConnection>
     </scm>
 
-    <!-- <distributionManagement>
-        <site>
-            <id>github-project-site</id>
-            <url>gitsite:git@github.com/mongojack/mongojack.git</url>
-        </site>
-    </distributionManagement> -->
-
 	<distributionManagement>
 		<repository>
 			<id>releases</id>
@@ -445,8 +438,8 @@
 			<url>https://repo.int.actility.com/artifactory/mvn-snapshots</url>
 		</snapshotRepository>
 		<site>
-			<id>gitlabs</id>
-			<url>scm:git:git://git.int.actility.com:thingpark/server-common.git</url>
+			<id>github</id>
+			<url>scm:git:git@github.com:actility-lannion/mongojack.git</url>
 		</site>
 	</distributionManagement>
 
