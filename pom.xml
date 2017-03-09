@@ -369,6 +369,16 @@
             <organization>Actility</organization>
             <organizationUrl>https://www.actility.com/</organizationUrl>
         </contributor>
+		<contributor>
+            <name>Gilles Landel</name>
+            <email>gilles.landel@actility.com</email>
+            <url>https://github.com/Gilandel</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <organization>Actility</organization>
+            <organizationUrl>https://www.actility.com/</organizationUrl>
+        </contributor>
     </contributors>
 
     <licenses>
@@ -416,12 +426,29 @@
         <developerConnection>scm:git:git@github.com:mongojack/mongojack.git</developerConnection>
     </scm>
 
-    <distributionManagement>
+    <!-- <distributionManagement>
         <site>
             <id>github-project-site</id>
             <url>gitsite:git@github.com/mongojack/mongojack.git</url>
         </site>
-    </distributionManagement>
+    </distributionManagement> -->
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>releases</name>
+			<url>https://repo.int.actility.com/artifactory/mvn-releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>snapshots</name>
+			<url>https://repo.int.actility.com/artifactory/mvn-snapshots</url>
+		</snapshotRepository>
+		<site>
+			<id>gitlabs</id>
+			<url>scm:git:git://git.int.actility.com:thingpark/server-common.git</url>
+		</site>
+	</distributionManagement>
 
     <issueManagement>
         <system>GitHub</system>
