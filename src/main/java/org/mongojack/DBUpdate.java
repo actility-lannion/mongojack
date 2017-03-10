@@ -197,7 +197,7 @@ public class DBUpdate {
     }
 
     /**
-     * Remove all occurances of value from the array at field
+     * Remove all occurrences of value from the array at field
      * 
      * @param field
      *            The field to remove the value from
@@ -210,7 +210,7 @@ public class DBUpdate {
     }
 
     /**
-     * Remove all occurances of the values from the array at field
+     * Remove all occurrences of the values from the array at field
      * 
      * @param field
      *            The field to remove the values from
@@ -223,7 +223,7 @@ public class DBUpdate {
     }
 
     /**
-     * Remove all occurances of the values from the array at field
+     * Remove all occurrences of the values from the array at field
      * 
      * @param field
      *            The field to remove the values from
@@ -482,7 +482,7 @@ public class DBUpdate {
         }
 
         /**
-         * Remove all occurances of value from the array at field
+         * Remove all occurrences of value from the array at field
          * 
          * @param field
          *            The field to remove the value from
@@ -496,7 +496,7 @@ public class DBUpdate {
         }
 
         /**
-         * Remove all occurances of the values from the array at field
+         * Remove all occurrences of the values from the array at field
          * 
          * @param field
          *            The field to remove the values from
@@ -510,7 +510,7 @@ public class DBUpdate {
         }
 
         /**
-         * Remove all occurances of the values from the array at field
+         * Remove all occurrences of the values from the array at field
          * 
          * @param field
          *            The field to remove the values from
@@ -604,7 +604,7 @@ public class DBUpdate {
         /**
          * Add a raw operation. This may be useful in case of MongoDB adding new
          * features that aren't yet available through this interface, or if
-         * something has been left out. Note that no serialisation will be
+         * something has been left out. Note that no serialization will be
          * attempted of the values.
          * 
          * @param op
@@ -646,10 +646,12 @@ public class DBUpdate {
         }
 
         /**
-         * Serialise the values of the query and get them
+         * Serialize the values of the query and get them
          * 
          * @param objectMapper
-         *            The object mapper to use to serialise values
+         *            The object mapper to use to serialize values
+         * @param javaType
+         *            The java type
          * @return The object
          */
         public DBObject serialiseAndGet(ObjectMapper objectMapper,

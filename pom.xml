@@ -1,215 +1,216 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.mongojack</groupId>
-    <artifactId>mongojack</artifactId>
-    <version>2.6.3-SNAPSHOT</version>
-    <packaging>bundle</packaging>
+	<groupId>org.mongojack</groupId>
+	<artifactId>mongojack</artifactId>
+	<version>2.6.3-SNAPSHOT</version>
+	<packaging>bundle</packaging>
 
-    <name>MongoJack</name>
-    <description>Maps MongoDB objects to POJOs using Jackson</description>
-    <url>http://mongojack.org</url>
-    <organization>
-        <name>devbliss GmbH</name>
-        <url>http://www.devbliss.com</url>
-    </organization>
-    <inceptionYear>2011</inceptionYear>
+	<name>MongoJack</name>
+	<description>Maps MongoDB objects to POJOs using Jackson</description>
+	<url>http://mongojack.org</url>
+	<organization>
+		<name>devbliss GmbH</name>
+		<url>http://www.devbliss.com</url>
+	</organization>
+	<inceptionYear>2011</inceptionYear>
 
-    <mailingLists>
-        <mailingList>
-            <name>MongoDB Jackson Mapper Users</name>
-            <post>mongo-jackson-mapper@googlegroups.com</post>
-            <archive>http://groups.google.com/group/mongo-jackson-mapper</archive>
-        </mailingList>
-    </mailingLists>
+	<mailingLists>
+		<mailingList>
+			<name>MongoDB Jackson Mapper Users</name>
+			<post>mongo-jackson-mapper@googlegroups.com</post>
+			<archive>http://groups.google.com/group/mongo-jackson-mapper</archive>
+		</mailingList>
+	</mailingLists>
 
 	<developers>
-        <developer>
-            <name>James Roper</name>
-            <email>james@jazzy.id.au</email>
-            <url>http://jazzy.id.au</url>
-            <roles>
-                <role>Author</role>
-            </roles>
-            <organization>devbliss GmbH</organization>
-            <organizationUrl>https://devbliss.com</organizationUrl>
-        </developer>
-        <developer>
-            <name>Marco Reinwarth</name>
-            <email>marco.reinwarth@devbliss.com</email>
-            <url>https://about.me/marei</url>
-            <roles>
-                <role>Maintainer</role>
-            </roles>
-            <organization>devbliss GmbH</organization>
-            <organizationUrl>https://devbliss.com</organizationUrl>
-        </developer>
-        <developer>
-            <name>Bastien Mary</name>
-            <email>bastien.mary@devbliss.com</email>
-            <roles>
-                <role>Maintainer</role>
-            </roles>
-            <organization>devbliss GmbH</organization>
-            <organizationUrl>https://devbliss.com</organizationUrl>
-        </developer>
-        <developer>
-            <name>Ben McCann</name>
-            <roles>
-                <role>Maintainer</role>
-            </roles>
-            <organizationUrl>https://www.benmccannn.com</organizationUrl>
-        </developer>
-    </developers>
+		<developer>
+			<name>James Roper</name>
+			<email>james@jazzy.id.au</email>
+			<url>http://jazzy.id.au</url>
+			<roles>
+				<role>Author</role>
+			</roles>
+			<organization>devbliss GmbH</organization>
+			<organizationUrl>https://devbliss.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Marco Reinwarth</name>
+			<email>marco.reinwarth@devbliss.com</email>
+			<url>https://about.me/marei</url>
+			<roles>
+				<role>Maintainer</role>
+			</roles>
+			<organization>devbliss GmbH</organization>
+			<organizationUrl>https://devbliss.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Bastien Mary</name>
+			<email>bastien.mary@devbliss.com</email>
+			<roles>
+				<role>Maintainer</role>
+			</roles>
+			<organization>devbliss GmbH</organization>
+			<organizationUrl>https://devbliss.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Ben McCann</name>
+			<roles>
+				<role>Maintainer</role>
+			</roles>
+			<organizationUrl>https://www.benmccannn.com</organizationUrl>
+		</developer>
+	</developers>
 
-    <contributors>
-        <contributor>
-            <name>Christian Riedel</name>
-            <url>https://github.com/criedel</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </contributor>
-        <contributor>
-            <name>Reimund Klain</name>
-            <url>http://blog.klain.eu</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </contributor>
-        <contributor>
-            <name>aleskiewicz</name>
-            <url>https://github.com/aleskiewicz</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </contributor>
-        <contributor>
-            <name>John Hinnegan</name>
-            <url>https://github.com/softwaregravy</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </contributor>
-        <contributor>
-            <name>pmaedel</name>
-            <url>https://github.com/pmaedel</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-            <organization>ThinkNear</organization>
-        </contributor>
-        <contributor>
-            <name>Timothy Maxwell</name>
-            <url>https://github.com/truthspirit</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </contributor>
-        <contributor>
-            <name>saadmufti</name>
-            <url>https://github.com/saadmufti</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </contributor>
-        <contributor>
-            <name>Jan Meyer</name>
-            <url>http://www.m-bs.de</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-            <organization>Meyer Business Services GmbH</organization>
-            <organizationUrl>http://www.m-bs.de</organizationUrl>
-        </contributor>
-        <contributor>
-            <name>Paul Bakker</name>
-            <url>http://twitter.com/pbakker</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-            <organization>Luminis Technologies</organization>
-        </contributor>
-        <contributor>
-            <name>Jeff Yemin</name>
-            <url>https://github.com/jyemin</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-            <organization>MongoDB, Inc.</organization>
-        </contributor>
-        <contributor>
-            <name>Christopher Exell</name>
-            <url>https://github.com/exell-christopher</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </contributor>
-        <contributor>
-            <name>Yun Zhi Lin</name>
-            <url>http://www.yunspace.com/</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </contributor>
-        <contributor>
-            <name>Mike Ho</name>
-            <url>https://github.com/abc2mit</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </contributor>
-        <contributor>
-            <name>Luke Palmer</name>
-            <url>https://github.com/lukepalmer</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </contributor>
-        <contributor>
-            <name>Camilo Bermudez</name>
-            <url>https://github.com/camilobermudez85</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </contributor>
-        <contributor>
-            <name>Thomas Simon</name>
-            <email>thomas.simon@actility.com</email>
-            <url>https://github.com/Tomuss</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-            <organization>Actility</organization>
-            <organizationUrl>https://www.actility.com/</organizationUrl>
-        </contributor>
+	<contributors>
 		<contributor>
-            <name>Gilles Landel</name>
-            <email>gilles.landel@actility.com</email>
-            <url>https://github.com/Gilandel</url>
-            <roles>
-                <role>developer</role>
-            </roles>
-            <organization>Actility</organization>
-            <organizationUrl>https://www.actility.com/</organizationUrl>
-        </contributor>
-    </contributors>
+			<name>Christian Riedel</name>
+			<url>https://github.com/criedel</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Reimund Klain</name>
+			<url>http://blog.klain.eu</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>aleskiewicz</name>
+			<url>https://github.com/aleskiewicz</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>John Hinnegan</name>
+			<url>https://github.com/softwaregravy</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>pmaedel</name>
+			<url>https://github.com/pmaedel</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<organization>ThinkNear</organization>
+		</contributor>
+		<contributor>
+			<name>Timothy Maxwell</name>
+			<url>https://github.com/truthspirit</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>saadmufti</name>
+			<url>https://github.com/saadmufti</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Jan Meyer</name>
+			<url>http://www.m-bs.de</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<organization>Meyer Business Services GmbH</organization>
+			<organizationUrl>http://www.m-bs.de</organizationUrl>
+		</contributor>
+		<contributor>
+			<name>Paul Bakker</name>
+			<url>http://twitter.com/pbakker</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<organization>Luminis Technologies</organization>
+		</contributor>
+		<contributor>
+			<name>Jeff Yemin</name>
+			<url>https://github.com/jyemin</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<organization>MongoDB, Inc.</organization>
+		</contributor>
+		<contributor>
+			<name>Christopher Exell</name>
+			<url>https://github.com/exell-christopher</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Yun Zhi Lin</name>
+			<url>http://www.yunspace.com/</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Mike Ho</name>
+			<url>https://github.com/abc2mit</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Luke Palmer</name>
+			<url>https://github.com/lukepalmer</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Camilo Bermudez</name>
+			<url>https://github.com/camilobermudez85</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Thomas Simon</name>
+			<email>thomas.simon@actility.com</email>
+			<url>https://github.com/Tomuss</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<organization>Actility</organization>
+			<organizationUrl>https://www.actility.com/</organizationUrl>
+		</contributor>
+		<contributor>
+			<name>Gilles Landel</name>
+			<email>gilles.landel@actility.com</email>
+			<url>https://github.com/Gilandel</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<organization>Actility</organization>
+			<organizationUrl>https://www.actility.com/</organizationUrl>
+		</contributor>
+	</contributors>
 
-    <licenses>
-        <license>
-            <name>Apache 2</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-            <comments>A business-friendly OSS license</comments>
-        </license>
-    </licenses>
+	<licenses>
+		<license>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
 
-    <scm>
-        <url>https://github.com/actility-lannion/mongojack</url>
-        <connection>scm:git://github.com/actility-lannion/mongojack.git</connection>
-        <developerConnection>scm:git:git@github.com:actility-lannion/mongojack.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+	<scm>
+		<url>https://github.com/actility-lannion/mongojack</url>
+		<connection>scm:git://github.com/actility-lannion/mongojack.git</connection>
+		<developerConnection>scm:git:git@github.com:actility-lannion/mongojack.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
 
 	<distributionManagement>
 		<repository>
@@ -228,24 +229,25 @@
 		</site>
 	</distributionManagement>
 
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/actility-lannion/mongojack/issues/</url>
-    </issueManagement>
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/actility-lannion/mongojack/issues/</url>
+	</issueManagement>
 
-    <properties>
-    	<java.version>1.7</java.version>
-    	<maven.compiler.source>${java.version}</maven.compiler.source>
+	<properties>
+		<java.version>1.7</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
-    	
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.resourcesEncoding>UTF-8</project.build.resourcesEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <!-- Necessary because according to the docs, site filtering doesn't work for properties with dots in them -->
-        <siteProjectVersion>${project.version}</siteProjectVersion>
+		<!-- Necessary because according to the docs, site filtering doesn't work 
+			for properties with dots in them -->
+		<siteProjectVersion>${project.version}</siteProjectVersion>
 
-        <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
+		<maven.javadoc.failOnError>false</maven.javadoc.failOnError>
 
 		<!-- Plugins version -->
 		<clean.plugin.version>3.0.0</clean.plugin.version>
@@ -266,7 +268,7 @@
 		<project.reports.plugin.version>2.9</project.reports.plugin.version>
 
 		<doxia.version>1.7</doxia.version>
-		
+
 		<!-- Extensions version -->
 		<wagon-gitsite.extension.version>0.5</wagon-gitsite.extension.version>
 
@@ -281,9 +283,9 @@
 		<hamcrest.version>1.3</hamcrest.version>
 		<flapdoodle-embed-mongo.version>1.50.5</flapdoodle-embed-mongo.version>
 		<mockito.version>1.10.19</mockito.version>
-    </properties>
+	</properties>
 
-    <reporting>
+	<reporting>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -319,39 +321,53 @@
 		</plugins>
 	</reporting>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-                <configuration>
-                    <instructions>
-                        <Export-Package>org.mongojack</Export-Package>
-                    </instructions>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>bundle-manifest</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>manifest</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
-        <extensions>
-            <extension>
-                <groupId>com.github.stephenc.wagon</groupId>
-                <artifactId>wagon-gitsite</artifactId>
-                <version>${wagon-gitsite.extension.version}</version>
-            </extension>
-        </extensions>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Export-Package>org.mongojack</Export-Package>
+					</instructions>
+				</configuration>
+				<executions>
+					<execution>
+						<id>bundle-manifest</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>manifest</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 
-        <pluginManagement>
-            <plugins>
+		<extensions>
+			<extension>
+				<groupId>com.github.stephenc.wagon</groupId>
+				<artifactId>wagon-gitsite</artifactId>
+				<version>${wagon-gitsite.extension.version}</version>
+			</extension>
+		</extensions>
+
+		<pluginManagement>
+			<plugins>
 				<plugin>
 					<artifactId>maven-clean-plugin</artifactId>
 					<version>${clean.plugin.version}</version>
@@ -426,14 +442,14 @@
 					<configuration>
 						<argLine>-Dfile.encoding=${project.build.resourcesEncoding}</argLine>
 						<properties>
-		                    <property>
-		                        <name>listener</name>
-		                        <value>org.mongojack.testing.DbRunListener</value>
-		                    </property>
-		                </properties>
-		                <systemPropertyVariables>
-		                    <isMaven>true</isMaven>
-		                </systemPropertyVariables>
+							<property>
+								<name>listener</name>
+								<value>org.mongojack.testing.DbRunListener</value>
+							</property>
+						</properties>
+						<systemPropertyVariables>
+							<isMaven>true</isMaven>
+						</systemPropertyVariables>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -459,31 +475,31 @@
 					<artifactId>maven-site-plugin</artifactId>
 					<version>${site.plugin.version}</version>
 					<configuration>
-			            <reportPlugins>
-			                <plugin>
-			                    <groupId>org.apache.maven.plugins</groupId>
-			                    <artifactId>maven-project-info-reports-plugin</artifactId>
-			                    <version>${project.reports.plugin.version}</version>
-			                </plugin>
-			                <plugin>
-			                    <groupId>org.apache.maven.plugins</groupId>
-			                    <artifactId>maven-javadoc-plugin</artifactId>
-			                    <version>${javadoc.plugin.version}</version>
-			                </plugin>
-			            </reportPlugins>
-			        </configuration>
-			        <dependencies>
-			            <dependency>
-			                <groupId>org.apache.maven.doxia</groupId>
-			                <artifactId>doxia-module-markdown</artifactId>
-			                <version>${doxia.version}</version>
-			            </dependency>
-			        </dependencies>
+						<reportPlugins>
+							<plugin>
+								<groupId>org.apache.maven.plugins</groupId>
+								<artifactId>maven-project-info-reports-plugin</artifactId>
+								<version>${project.reports.plugin.version}</version>
+							</plugin>
+							<plugin>
+								<groupId>org.apache.maven.plugins</groupId>
+								<artifactId>maven-javadoc-plugin</artifactId>
+								<version>${javadoc.plugin.version}</version>
+							</plugin>
+						</reportPlugins>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.maven.doxia</groupId>
+							<artifactId>doxia-module-markdown</artifactId>
+							<version>${doxia.version}</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 				<plugin>
-                	<groupId>org.apache.felix</groupId>
-		            <artifactId>maven-bundle-plugin</artifactId>
-		            <version>${bundle.plugin.version}</version>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-bundle-plugin</artifactId>
+					<version>${bundle.plugin.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -496,91 +512,92 @@
 					<version>${project.reports.plugin.version}</version>
 				</plugin>
 
-                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.apache.felix</groupId>
-                                        <artifactId>maven-bundle-plugin</artifactId>
-                                        <versionRange>[${bundle.plugin.version},)</versionRange>
-                                        <goals>
-                                            <goal>manifest</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore />
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.felix</groupId>
+										<artifactId>maven-bundle-plugin</artifactId>
+										<versionRange>[${bundle.plugin.version},)</versionRange>
+										<goals>
+											<goal>manifest</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 	<dependencies>
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver</artifactId>
-            <version>${mongodb-driver.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>de.undercouch</groupId>
-            <artifactId>bson4jackson</artifactId>
-            <version>${bson4jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>${persistence-api.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commons-io.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-driver</artifactId>
+			<version>${mongodb-driver.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.undercouch</groupId>
+			<artifactId>bson4jackson</artifactId>
+			<version>${bson4jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>${persistence-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
+		</dependency>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>de.flapdoodle.embed</groupId>
-            <artifactId>de.flapdoodle.embed.mongo</artifactId>
-            <version>${flapdoodle-embed-mongo.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-            <version>${hamcrest.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-            <version>${hamcrest.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>${mockito.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.flapdoodle.embed</groupId>
+			<artifactId>de.flapdoodle.embed.mongo</artifactId>
+			<version>${flapdoodle-embed-mongo.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-core</artifactId>
+			<version>${hamcrest.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-library</artifactId>
+			<version>${hamcrest.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>${mockito.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 </project>

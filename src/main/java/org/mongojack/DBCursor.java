@@ -32,10 +32,8 @@ import com.mongodb.ServerAddress;
 
 /**
  * An iterator over database results. This class is not threadsafe and is
- * intended to be used from a single thread or synchronized. Doing a <code>find()</code> query on a collection returns a
- * <code>DBCursor</code> thus
- * <p>
- * <blockquote>
+ * intended to be used from a single thread or synchronized. Doing a {@code find()} query on a collection returns a
+ * {@link DBCursor} thus
  * 
  * <pre>
  * DBCursor cursor = collection.find( query );
@@ -43,23 +41,20 @@ import com.mongodb.ServerAddress;
  *     T obj = cursor.next();
  * </pre>
  * 
- * </blockquote>
- * <p>
  * <p>
  * <b>Warning:</b> Calling <code>toArray</code> or <code>length</code> on a DBCursor will irrevocably turn it into an
  * array. This means that, if the cursor was iterating over ten million results (which it was lazily fetching from the
  * database), suddenly there will be a ten-million element array in memory. Before converting to an array, make sure
  * that there are a reasonable number of results using <code>skip()</code> and <code>limit()</code>.
+ * </p>
+ * 
  * <p>
  * For example, to get an array of the 1000-1100th elements of a cursor, use
- * <p>
- * <blockquote>
+ * </p>
  * 
  * <pre>
  * List&lt;DBObject&gt; obj = collection.find(query).skip(1000).limit(100).toArray();
  * </pre>
- * 
- * </blockquote>
  * 
  * @author James Roper
  * @since 1.0
@@ -322,7 +317,7 @@ public class DBCursor<T> extends DBQuery.AbstractBuilder<DBCursor<T>> implements
      * Checks if there is another object available
      * 
      * @return true if there is another object available
-     * @throws MongoException
+     * @throws MongoException on access error
      */
     @Override
     public boolean hasNext() throws MongoException {
@@ -334,7 +329,7 @@ public class DBCursor<T> extends DBQuery.AbstractBuilder<DBCursor<T>> implements
      * Returns the object the cursor is at and moves the cursor ahead by one.
      * 
      * @return the next element
-     * @throws MongoException
+     * @throws MongoException on access error
      */
     @Override
     public T next() throws MongoException {
@@ -368,7 +363,7 @@ public class DBCursor<T> extends DBQuery.AbstractBuilder<DBCursor<T>> implements
      * 
      * @return the number of elements in the array
      * @throws MongoException
-     *             Ig as error occurred
+     *             if an error occurred
      * @see #count()
      * @see #size()
      */
@@ -425,7 +420,7 @@ public class DBCursor<T> extends DBQuery.AbstractBuilder<DBCursor<T>> implements
      * limit/skip into consideration
      * 
      * @return the number of objects
-     * @throws MongoException
+     * @throws MongoException on access error
      * @see #size()
      */
     public int count() {
@@ -438,7 +433,7 @@ public class DBCursor<T> extends DBQuery.AbstractBuilder<DBCursor<T>> implements
      * into consideration
      * 
      * @return the number of objects
-     * @throws MongoException
+     * @throws MongoException on access error
      * @see #count()
      */
     public int size() {

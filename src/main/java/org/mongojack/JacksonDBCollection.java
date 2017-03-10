@@ -65,6 +65,8 @@ import com.mongodb.WriteConcern;
  * 
  * @author James Roper
  * @since 1.0
+ * @param <T> the object collection type 
+ * @param <K> the index key type
  */
 public class JacksonDBCollection<T, K> {
 
