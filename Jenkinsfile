@@ -54,9 +54,9 @@ pipeline {
             		}
             		
             		// Remove old builds logs
-            		properties([ 
-				      [$class: 'jenkins.model.BuildDiscarderProperty', strategy: [$class: 'LogRotator', numToKeepStr: "${env.LOGS_NUMBER}"]]
-				    ])
+            		// properties([ 
+				    //  [$class: 'jenkins.model.BuildDiscarderProperty', strategy: [$class: 'LogRotator', numToKeepStr: "${env.LOGS_NUMBER}"]]
+				    // ])
             	}
             }
         }
