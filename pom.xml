@@ -1,12 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
-    </parent> -->
-
     <groupId>org.mongojack</groupId>
     <artifactId>mongojack</artifactId>
     <version>2.6.2-SNAPSHOT</version>
@@ -21,195 +15,15 @@
     </organization>
     <inceptionYear>2011</inceptionYear>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver</artifactId>
-            <version>3.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.7.1-1</version>
-        </dependency>
-        <dependency>
-            <groupId>de.undercouch</groupId>
-            <artifactId>bson4jackson</artifactId>
-            <version>2.7.0</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.4</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>de.flapdoodle.embed</groupId>
-            <artifactId>de.flapdoodle.embed.mongo</artifactId>
-            <version>1.50.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-            <version>1.3</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-            <version>1.3</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.10.19</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <mailingLists>
+        <mailingList>
+            <name>MongoDB Jackson Mapper Users</name>
+            <post>mongo-jackson-mapper@googlegroups.com</post>
+            <archive>http://groups.google.com/group/mongo-jackson-mapper</archive>
+        </mailingList>
+    </mailingLists>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- Necessary because according to the docs, site filtering doesn't work for properties with dots in them -->
-        <siteProjectVersion>${project.version}</siteProjectVersion>
-        <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
-    </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                    <compilerArgument>-Xlint:deprecation</compilerArgument>
-                    <showDeprecation>true</showDeprecation>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.4</version>
-                <configuration>
-                    <reportPlugins>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-project-info-reports-plugin</artifactId>
-                            <version>2.8.1</version>
-                        </plugin>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-javadoc-plugin</artifactId>
-                            <version>2.10.3</version>
-                        </plugin>
-                    </reportPlugins>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.doxia</groupId>
-                        <artifactId>doxia-module-markdown</artifactId>
-                        <version>1.6</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-surefire-plugin</artifactId>
-              <version>2.18.1</version>
-              <configuration>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>org.mongojack.testing.DbRunListener</value>
-                        </property>
-                    </properties>
-                    <systemPropertyVariables>
-                        <isMaven>true</isMaven>
-                    </systemPropertyVariables>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <version>2.5.4</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <instructions>
-                        <Export-Package>org.mongojack</Export-Package>
-                    </instructions>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>bundle-manifest</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>manifest</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-
-        <extensions>
-            <extension>
-                <groupId>com.github.stephenc.wagon</groupId>
-                <artifactId>wagon-gitsite</artifactId>
-                <version>0.5</version>
-            </extension>
-        </extensions>
-        <pluginManagement>
-            <plugins>
-                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>
-                                            org.apache.felix
-                                        </groupId>
-                                        <artifactId>
-                                            maven-bundle-plugin
-                                        </artifactId>
-                                        <versionRange>
-                                            [2.5.3,)
-                                        </versionRange>
-                                        <goals>
-                                            <goal>manifest</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore />
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
-    <developers>
+	<developers>
         <developer>
             <name>James Roper</name>
             <email>james@jazzy.id.au</email>
@@ -390,40 +204,10 @@
         </license>
     </licenses>
 
-    <profiles>
-        <profile>
-            <id>release-sign-artifacts</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
     <scm>
-        <url>https://github.com/mongojack/mongojack</url>
-        <connection>scm:git://github.com/mongojack/mongojack.git</connection>
-        <developerConnection>scm:git:git@github.com:mongojack/mongojack.git</developerConnection>
+        <url>https://github.com/actility-lannion/mongojack</url>
+        <connection>scm:git://github.com/actility-lannion/mongojack.git</connection>
+        <developerConnection>scm:git:git@github.com:actility-lannion/mongojack.git</developerConnection>
     </scm>
 
 	<distributionManagement>
@@ -445,24 +229,357 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/mongojack/mongojack/issues/</url>
+        <url>https://github.com/actility-lannion/mongojack/issues/</url>
     </issueManagement>
 
+    <properties>
+    	<java.version>1.7</java.version>
+    	<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+    	
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.resourcesEncoding>UTF-8</project.build.resourcesEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Necessary because according to the docs, site filtering doesn't work for properties with dots in them -->
+        <siteProjectVersion>${project.version}</siteProjectVersion>
+
+        <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
+
+		<!-- Plugins version -->
+		<clean.plugin.version>3.0.0</clean.plugin.version>
+		<install.plugin.version>2.5.2</install.plugin.version>
+		<source.plugin.version>3.0.1</source.plugin.version>
+		<deploy.plugin.version>2.8.2</deploy.plugin.version>
+		<resources.plugin.version>3.0.2</resources.plugin.version>
+		<compiler.plugin.version>3.6.1</compiler.plugin.version>
+		<jar.plugin.version>3.0.2</jar.plugin.version>
+		<release.plugin.version>2.5.3</release.plugin.version>
+		<dependency.plugin.version>3.0.0</dependency.plugin.version>
+		<site.plugin.version>3.6</site.plugin.version>
+		<surefire.plugin.version>2.19.1</surefire.plugin.version>
+		<bundle.plugin.version>3.2.0</bundle.plugin.version>
+
+		<javadoc.plugin.version>2.10.4</javadoc.plugin.version>
+		<maven.scm.git.plugin.version>1.9.5</maven.scm.git.plugin.version>
+		<project.reports.plugin.version>2.9</project.reports.plugin.version>
+
+		<doxia.version>1.7</doxia.version>
+		
+		<!-- Extensions version -->
+		<wagon-gitsite.extension.version>0.5</wagon-gitsite.extension.version>
+
+		<!-- Dependencies version -->
+		<mongodb-driver.version>3.4.2</mongodb-driver.version>
+		<jackson.version>2.8.7</jackson.version>
+		<bson4jackson.version>2.7.0</bson4jackson.version>
+		<persistence-api.version>1.0.2</persistence-api.version>
+		<commons-io.version>2.5</commons-io.version>
+
+		<junit.version>4.12</junit.version>
+		<hamcrest.version>1.3</hamcrest.version>
+		<flapdoodle-embed-mongo.version>2.0.0</flapdoodle-embed-mongo.version>
+		<mockito.version>1.10.19</mockito.version>
+    </properties>
+
     <reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<show>package</show>
+					<aggregate>true</aggregate>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>cim</report>
+							<report>dependencies</report>
+							<report>dependency-convergence</report>
+							<report>dependency-info</report>
+							<report>dependency-management</report>
+							<report>issue-tracking</report>
+							<report>license</report>
+							<report>plugin-management</report>
+							<report>plugins</report>
+							<report>project-team</report>
+							<report>scm</report>
+							<report>summary</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
+
+    <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.8.1</version>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Export-Package>org.mongojack</Export-Package>
+                    </instructions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>manifest</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
-    </reporting>
 
-    <mailingLists>
-        <mailingList>
-            <name>MongoDB Jackson Mapper Users</name>
-            <post>mongo-jackson-mapper@googlegroups.com</post>
-            <archive>http://groups.google.com/group/mongo-jackson-mapper</archive>
-        </mailingList>
-    </mailingLists>
+        <extensions>
+            <extension>
+                <groupId>com.github.stephenc.wagon</groupId>
+                <artifactId>wagon-gitsite</artifactId>
+                <version>${wagon-gitsite.extension.version}</version>
+            </extension>
+        </extensions>
+
+        <pluginManagement>
+            <plugins>
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${clean.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${compiler.plugin.version}</version>
+					<configuration>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
+						<showDeprecation>true</showDeprecation>
+						<showWarnings>true</showWarnings>
+						<encoding>${project.build.sourceEncoding}</encoding>
+						<compilerArgument>-Xlint:deprecation</compilerArgument>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${jar.plugin.version}</version>
+					<configuration>
+						<archive>
+							<manifestEntries>
+								<Date>${maven.build.timestamp}</Date>
+								<Version>${project.version}</Version>
+							</manifestEntries>
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+								<packageName>${project.groupId}.${project.artifactId}</packageName>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${resources.plugin.version}</version>
+					<configuration>
+						<encoding>${project.build.resourcesEncoding}</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>${dependency.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${deploy.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${install.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${source.plugin.version}</version>
+					<configuration>
+						<attach>true</attach>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${surefire.plugin.version}</version>
+					<configuration>
+						<argLine>-Dfile.encoding=${project.build.resourcesEncoding}</argLine>
+						<properties>
+		                    <property>
+		                        <name>listener</name>
+		                        <value>org.mongojack.testing.DbRunListener</value>
+		                    </property>
+		                </properties>
+		                <systemPropertyVariables>
+		                    <isMaven>true</isMaven>
+		                </systemPropertyVariables>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${release.plugin.version}</version>
+					<configuration>
+						<goals>deploy</goals>
+						<useReleaseProfile>false</useReleaseProfile>
+						<releaseProfiles>release</releaseProfiles>
+						<tagNameFormat>@{project.version}</tagNameFormat>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.maven.scm</groupId>
+							<artifactId>maven-scm-provider-gitexe</artifactId>
+							<version>${maven.scm.git.plugin.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>${site.plugin.version}</version>
+					<configuration>
+			            <reportPlugins>
+			                <plugin>
+			                    <groupId>org.apache.maven.plugins</groupId>
+			                    <artifactId>maven-project-info-reports-plugin</artifactId>
+			                    <version>${project.reports.plugin.version}</version>
+			                </plugin>
+			                <plugin>
+			                    <groupId>org.apache.maven.plugins</groupId>
+			                    <artifactId>maven-javadoc-plugin</artifactId>
+			                    <version>${javadoc.plugin.version}</version>
+			                </plugin>
+			            </reportPlugins>
+			        </configuration>
+			        <dependencies>
+			            <dependency>
+			                <groupId>org.apache.maven.doxia</groupId>
+			                <artifactId>doxia-module-markdown</artifactId>
+			                <version>${doxia.version}</version>
+			            </dependency>
+			        </dependencies>
+				</plugin>
+				<plugin>
+                	<groupId>org.apache.felix</groupId>
+		            <artifactId>maven-bundle-plugin</artifactId>
+		            <version>${bundle.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${javadoc.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>${project.reports.plugin.version}</version>
+				</plugin>
+
+                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.felix</groupId>
+                                        <artifactId>maven-bundle-plugin</artifactId>
+                                        <versionRange>[${bundle.plugin.version},)</versionRange>
+                                        <goals>
+                                            <goal>manifest</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+	<dependencies>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver</artifactId>
+            <version>${mongodb-driver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>de.undercouch</groupId>
+            <artifactId>bson4jackson</artifactId>
+            <version>${bson4jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>${persistence-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
+            <version>${flapdoodle-embed-mongo.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>${hamcrest.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>${hamcrest.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
