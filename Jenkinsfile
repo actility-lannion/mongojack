@@ -22,8 +22,8 @@ pipeline {
     	// EMAIL_TO = 'gilles.landel@actility.com'
     	EMAIL_TO = 'all-lannion@actility.com'
     	
-    	GIT_EMAIL = 'it+jenkins@actility.com'
-    	GIT_USER = 'Jenkins'
+    	GIT_EMAIL = 'all-lannion@actility.com'
+    	GIT_USER = 'actility-lannion'
     	
     	// Configuration file provider identifier
     	SETTINGS_ID = '039f3cd3-f61d-47b4-b2b5-9ff117d5bccf'
