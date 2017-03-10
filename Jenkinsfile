@@ -53,7 +53,7 @@ pipeline {
             			env.RELEASE = ""
             		}
             		
-            		// Remove old builds logs
+            		// Remove old builds logs (disabled, jenkins don't show the build with parameters if uncommented)
             		// properties([ 
 				    //  [$class: 'jenkins.model.BuildDiscarderProperty', strategy: [$class: 'LogRotator', numToKeepStr: "${env.LOGS_NUMBER}"]]
 				    // ])
