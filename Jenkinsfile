@@ -3,39 +3,31 @@ pipeline {
 	
 	tools {
 		maven 'Maven 3.3.9'
-		jdk 'jdk7'
+		jdk 'jdk8'
 	}
-	
-	// !!! with jdk 7, the property https.protocols is required to be compatible with the Actility repository
 	
 	parameters {
+		// valid: booleanParam, choice, file, text, password, run, string
+		
 		booleanParam(name: 'RELEASE', defaultValue: false, description: 'To create a release')
+		booleanParam(name: 'SONAR', defaultValue: false, description: 'Force the push of statistics on SonarQube (by default master and develop are automatically pushed)')
 	}
 	
-	triggers { 
+	triggers {
+		// valid: upstream, cron, gitlab, pollSCM
+	
 		cron('H 0,12 * * 1-5')
-		// each 12 hours from monday to friday, build a snapshot 
+		// each 12 hours from monday to friday, build a snapshot
+		
+		gitlab(triggerOnPush: true, triggerOnMergeRequest: true, branchFilterType: 'All')
 	}
 	
-	environment {
-		EMAIL_FROM = 'noreply.ci-lannion@actility.com'
-		// EMAIL_TO = 'gilles.landel@actility.com'
-		EMAIL_TO = 'all-lannion@actility.com'
-		
-		GIT_EMAIL = 'all-lannion@actility.com'
-		GIT_USER = 'actility-lannion'
-		
-		// Configuration file provider identifier
-		SETTINGS_ID = '039f3cd3-f61d-47b4-b2b5-9ff117d5bccf'
-		
-		// Git credential identifier
-		CREDENTIALS_ID = 'github-lannion'
-		
-		// Server identifier defined in Jenkins configuration
-		SONAR_SERVER = 'SonarQube'
-		
-		// The max number of logs to keep
-		LOGS_NUMBER = '10'
+	options {
+		// The max number of logs to keep (valid: daysToKeep, numToKeep, artifactDaysToKeep, artifactNumToKeep)
+	    buildDiscarder(logRotator(numToKeepStr: '10'))
+	    
+	    // Max timeout build
+	    timeout(time: 60, unit: 'MINUTES')
 	}
 	
 	stages {
@@ -45,18 +37,31 @@ pipeline {
 					IS_RELEASE = "${params.RELEASE}".toBoolean()
 					GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
 					
-					echo "RELEASE = $IS_RELEASE, BRANCH = $GIT_BRANCH"
+					echo "RELEASE = $IS_RELEASE, BRANCH = $BRANCH_NAME / $GIT_BRANCH"
 					
 					if (IS_RELEASE) {
 						env.RELEASE = " release"
 					} else {
 						env.RELEASE = ""
 					}
+
+					// environment block don't work (ClassCastException), need further analysis
 					
-					// Remove old builds logs (disabled, jenkins doesn't show the build with parameters if uncommented)
-					// properties([ 
-					//  [$class: 'jenkins.model.BuildDiscarderProperty', strategy: [$class: 'LogRotator', numToKeepStr: "${env.LOGS_NUMBER}"]]
-					// ])
+					env.EMAIL_FROM = 'noreply.ci-lannion@actility.com'
+					// env.EMAIL_TO = 'gilles.landel@actility.com'
+					env.EMAIL_TO = 'all-lannion@actility.com'
+					
+					env.GIT_EMAIL = 'it+jenkins@actility.com'
+					env.GIT_USER = 'Jenkins'
+					
+					// Configuration file provider identifier
+					env.SETTINGS_ID = '039f3cd3-f61d-47b4-b2b5-9ff117d5bccf'
+					
+					// Git credential identifier
+					env.CREDENTIALS_ID = '4b88a170-863d-4551-aaa1-f2b076a77f97'
+					
+					// Server identifier defined in Jenkins configuration
+					env.SONAR_SERVER = 'SonarQube'
 				}
 			}
 		}
@@ -64,26 +69,34 @@ pipeline {
 			steps {
 				script {
 					configFileProvider([configFile(fileId: "${env.SETTINGS_ID}", variable: 'MAVEN_SETTINGS')]) {
-						sh 'mvn clean package -B -s $MAVEN_SETTINGS'
+						sh 'mvn clean compile -B -s $MAVEN_SETTINGS'
 					}
 				}
 			}
 		}
-		stage('Quality Scan') {
+		stage('Test') {
 			when {
 				expression { !params.RELEASE }
 			}
 			
 			steps {
-				// withSonarQubeEnv only works with sonar-maven-plugin:3.0.2
-				// or with sonar-maven-plugin:3.2 with an http sonar server (tried with SonarQube 6.2 in a docker)
+				configFileProvider([configFile(fileId: "${env.SETTINGS_ID}", variable: 'MAVEN_SETTINGS')]) {
+					sh "mvn test -s $MAVEN_SETTINGS"
+				}
+			}
+		}
+		stage('Quality Scan') {
+			when {
+				expression { !params.RELEASE && (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'develop' || params.SONAR) }
+			}
+			
+			steps {
+				// withSonarQubeEnv only works with org.codehaus.mojo:sonar-maven-plugin:3.0.2
+				// or with org.sonarsource.scanner.maven:sonar-maven-plugin:3.2 with an http sonar server (tried with SonarQube 6.2 in a docker)
 				// maybe an https issue, try to inject cacert ???
 			
-				// JDK8 is required for the maven sonar plugin
-				withEnv(["JAVA_HOME=${ tool 'jdk8' }"]) {
-					configFileProvider([configFile(fileId: "${env.SETTINGS_ID}", variable: 'MAVEN_SETTINGS')]) {
-						sh "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar -s $MAVEN_SETTINGS"
-					}
+				configFileProvider([configFile(fileId: "${env.SETTINGS_ID}", variable: 'MAVEN_SETTINGS')]) {
+					sh "mvn jacoco:report sonar:sonar -s $MAVEN_SETTINGS"
 				}
 			}
 		}
@@ -98,7 +111,7 @@ pipeline {
 					echo "RELEASE = $IS_RELEASE - $GIT_BRANCH"
 				
 					configFileProvider([configFile(fileId: "${env.SETTINGS_ID}", variable: 'MAVEN_SETTINGS')]) {
-						sh 'mvn deploy -B -s $MAVEN_SETTINGS -Dhttps.protocols=TLSv1.2'
+						sh 'mvn deploy -B -s $MAVEN_SETTINGS -DskipTests=true'
 					}
 				}
 			}
@@ -123,10 +136,10 @@ pipeline {
 						configFileProvider([configFile(fileId: "${env.SETTINGS_ID}", variable: 'MAVEN_SETTINGS')]) {
 							
 							echo "prepare"
-							sh "mvn release:prepare -B -s $MAVEN_SETTINGS -Dhttps.protocols=TLSv1.2"
+							sh "mvn release:prepare -B -s $MAVEN_SETTINGS"
 							
 							echo "release"
-							sh "mvn release:perform -B -s $MAVEN_SETTINGS -Darguments='-DskipTests=true -s $MAVEN_SETTINGS -Dhttps.protocols=TLSv1.2'"
+							sh "mvn release:perform -B -s $MAVEN_SETTINGS -Darguments='-DskipTests=true'"
 						}
 						
 						// FUTURE, FROM RELEASE BRANCH
@@ -134,7 +147,7 @@ pipeline {
 						// sh "git fetch origin +master:master"
 						// sh "git checkout master"
 						// sh "git merge release"
-						// sh "git push origin/master"
+						// sh "git push origin master"
 					}
 				}
 			}
