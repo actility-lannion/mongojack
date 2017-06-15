@@ -1,3 +1,12 @@
+def notifyToSlack() {
+	def version = env.versionPom == null ? "0.0.0" : env.versionPom
+	def buildStatus = currentBuild.result == null? "Success": currentBuild.result
+	def color = currentBuild.result == null ? "good": "danger"
+	def msg = "${env.JOB_NAME}- #${env.BUILD_NUMBER}- ${buildStatus} (<${env.BUILD_URL}|Open>) - version ${version}"
+
+	slackSend(message: msg, channel: "#r_d-ci-build", color: color )
+}
+
 pipeline {
 	agent any
 	
@@ -149,29 +158,42 @@ pipeline {
 						// sh "git merge release"
 						// sh "git push origin master"
 					}
-				}
-			}
-			
-			post {
-				success {
-					echo "send success email to ${env.EMAIL_TO}"
 					
+					// POST
+					
+					notifyToSlack()
+					
+					// post actions are always executed even if expression returns false (since ?)
+					// so the mail is not in success post action
+					
+					echo "send success email to ${env.EMAIL_TO}"
+
 					mail(from: "${env.EMAIL_FROM}", to: "${env.EMAIL_TO}", subject: "[CI] SUCCESS: ${currentBuild.fullDisplayName} release", body: "Yeah, we succeeded.")
 				}
 			}
 		}
 	}
-	
+
 	post {
 		failure {
+			notifyToSlack()
+		
 			echo "send failure email to ${env.EMAIL_TO}"
+
+			mail(from: "${env.EMAIL_FROM}", to: "${env.EMAIL_TO}", subject: "[CI] FAILED: ${currentBuild.fullDisplayName}${env.RELEASE}", body: """Boo, we failed.
 			
-			mail(from: "${env.EMAIL_FROM}", to: "${env.EMAIL_TO}", subject: "[CI] FAILED: ${currentBuild.fullDisplayName}${env.RELEASE}", body: "Boo, we failed.")
+			logs:
+			${currentBuild.rawBuild.getLog(250)}""")
 		}
 		unstable {
-			echo "send unstable email to ${env.EMAIL_TO}"
+			notifyToSlack()
 			
-			mail(from: "${env.EMAIL_FROM}", to: "${env.EMAIL_TO}", subject: "[CI] UNSTABLE: ${currentBuild.fullDisplayName}${env.RELEASE}", body: "Huh, we're unstable.")
+			echo "send unstable email to ${env.EMAIL_TO}"
+
+			mail(from: "${env.EMAIL_FROM}", to: "${env.EMAIL_TO}", subject: "[CI] UNSTABLE: ${currentBuild.fullDisplayName}${env.RELEASE}", body: """Huh, we're unstable.
+			
+			logs:
+			${currentBuild.rawBuild.getLog(250)}""")
 		}
 	}
 }
