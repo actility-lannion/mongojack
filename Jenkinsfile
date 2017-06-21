@@ -67,7 +67,7 @@ pipeline {
 					env.SETTINGS_ID = '039f3cd3-f61d-47b4-b2b5-9ff117d5bccf'
 					
 					// Git credential identifier
-					env.CREDENTIALS_ID = '4b88a170-863d-4551-aaa1-f2b076a77f97'
+					env.CREDENTIALS_ID = 'github-lannion'
 					
 					// Server identifier defined in Jenkins configuration
 					env.SONAR_SERVER = 'SonarQube'
