@@ -72,6 +72,19 @@ public class DBQuery {
         return new Query().is(field, value);
     }
 
+	/**
+	 * The array field contain the given value
+	 * 
+	 * @param field
+	 *            The array field to compare
+	 * @param value
+	 *            The value to compare to
+	 * @return the query
+	 */
+	public static Query contain(String field, Object value) {
+		return new Query().contain(field, value);
+	}
+
     /**
      * The field is less than the given value
      * 
@@ -350,6 +363,19 @@ public class DBQuery {
         public Q is(String field, Object value) {
             return put(field, new SimpleQueryCondition(value));
         }
+
+		/**
+		 * The array field contains the given value
+		 * 
+		 * @param field
+		 *            The array field to compare
+		 * @param value
+		 *            The value to compare to
+		 * @return the query
+		 */
+		public Q contain(String field, Object value) {
+			return put(field, new SimpleQueryCondition(value, false));
+		}
 
         /**
          * The field is less than the given value
@@ -638,7 +664,7 @@ public class DBQuery {
         protected Q put(String field, String op, Collection<?> values) {
             List<QueryCondition> conditions = new ArrayList<QueryCondition>();
             for (Object value : values) {
-                conditions.add(new SimpleQueryCondition(value));
+				conditions.add(new SimpleQueryCondition(value));
             }
             return put(field, op, new CollectionQueryCondition(conditions, true));
         }

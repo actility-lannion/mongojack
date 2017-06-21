@@ -391,6 +391,25 @@ public class TestDBQuery extends MongoDBTestBase {
         cursor.in("blah", "blah");
     }
 
+	@Test
+	public void testContain() throws Exception {
+		MockObject mockObject1 = new MockObject("id1", "hello", 10);
+		mockObject1.simpleList = Arrays.asList("a", "b", "c");
+		coll.insert(mockObject1);
+		MockObject mockObject2 = new MockObject("id2", "hello", 10);
+		mockObject2.simpleList = Arrays.asList("a");
+		coll.insert(mockObject2);
+		MockObject mockObject3 = new MockObject("id3", "hello", 10);
+		mockObject3.simpleList = Arrays.asList("b", "c");
+		coll.insert(mockObject3);
+
+		DBCursor<MockObject> cursor = coll.find(DBQuery.contain("simpleList", "a"));
+		assertThat(cursor.size(), equalTo(2));
+
+		cursor = coll.find(DBQuery.contain("simpleList", "b"));
+		assertThat(cursor.size(), equalTo(2));
+	}
+
     private MockObject insertMockObject() {
         MockObject mockObject = new MockObject("someid", "hello", 10);
         mockObject.simpleList = Arrays.asList("a", "b", "c");

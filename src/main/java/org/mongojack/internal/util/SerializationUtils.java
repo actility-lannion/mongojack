@@ -171,8 +171,8 @@ public class SerializationUtils {
             String key, QueryCondition condition) {
         if (condition instanceof SimpleQueryCondition) {
             SimpleQueryCondition simple = (SimpleQueryCondition) condition;
-            if (!simple.requiresSerialization() || simple.getValue() == null) {
-                return simple.getValue();
+			if (!simple.requiresSerialization()) {
+				return serializeQueryField(simple.getValue(), null, serializerProvider, key);
             } else {
                 if (!key.startsWith("$")) {
                     serializer = findQuerySerializer(false, key,
@@ -653,7 +653,7 @@ public class SerializationUtils {
             return new BasicDBObject("$group", object);
         }
         if (stage instanceof Aggregation.Out) {
-        	return new BasicDBObject("$out", ((Object) ((Aggregation.Out) stage).collectionName()));
+        	return new BasicDBObject("$out", (((Aggregation.Out) stage).collectionName()));
         }
         throw new IllegalArgumentException(stage.getClass().getName());
     }

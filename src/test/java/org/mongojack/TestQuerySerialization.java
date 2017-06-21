@@ -122,15 +122,35 @@ public class TestQuerySerialization extends MongoDBTestBase {
     }
 
     @Test
-    public void testList() {
+	public void testListById() {
+		MockObject o = new MockObject();
+		MockObject o1 = new MockObject();
+		o1.id = new org.bson.types.ObjectId().toString();
+		o.items = Arrays.asList(o1);
+		coll.save(o);
+
+		assertThat(coll.find().is("items._id", o1.id).toArray(), hasSize(1));
+	}
+
+	@Test
+	public void testListWithObject() {
         MockObject o = new MockObject();
         MockObject o1 = new MockObject();
         o1.id = new org.bson.types.ObjectId().toString();
         o.items = Arrays.asList(o1);
         coll.save(o);
 
-        assertThat(coll.find().is("items._id", o1.id).toArray(), hasSize(1));
+		assertThat(coll.find().contain("items", o1).toArray(), hasSize(1));
     }
+
+	@Test
+	public void testListWithValue() {
+		MockObject o = new MockObject();
+		o.strings = Arrays.asList("string");
+		coll.save(o);
+
+		assertThat(coll.find().contain("strings", "string").toArray(), hasSize(1));
+	}
 
     @Test
     public void testArrayEquals() {
@@ -154,6 +174,8 @@ public class TestQuerySerialization extends MongoDBTestBase {
         public int i;
 
         public List<MockObject> items;
+
+		public List<String> strings;
     }
 
     static class MockObjectWithList {
