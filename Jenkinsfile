@@ -37,5 +37,5 @@ thingparkPipeline {
 
     // Maven credentials identifier
     // [OPTIONAL, default: 4b88a170-863d-4551-aaa1-f2b076a77f97]
-    // credentialsId = 'github-lannion'
+    credentialsId = 'github-lannion'
 }
